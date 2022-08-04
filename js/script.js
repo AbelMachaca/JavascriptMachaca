@@ -28,7 +28,7 @@
 
 
 // while(true){
-//    var precioCosto = parseFloat (prompt("ingrese el precio de costo del producto"));
+//    const precioCosto = parseFloat (prompt("ingrese el precio de costo del producto"));
 
 //     if(!isNaN(precioCosto) && precioCosto != null && precioCosto != ""){
 
@@ -50,7 +50,7 @@
 // }    
 
 
-// var iva = CalcularIva(precioCosto);
+// const iva = CalcularIva(precioCosto);
 // ivaM= iva.toFixed(2);
 
 // alert("El IVA del producto ingresado es: "+ivaM);
@@ -62,7 +62,7 @@
 // }
 
 
-// var precioConIva = SumarIva(precioCosto);
+// const precioConIva = SumarIva(precioCosto);
 // precioConIvaM= precioConIva.toFixed(2);
 
 // alert("El precio del producto con IVA incluido es: "+precioConIvaM);
@@ -75,7 +75,7 @@
 // }
 
 
-// var precioVenta = calculaPrecioVenta(precioConIva);
+// const precioVenta = calculaPrecioVenta(precioConIva);
 // precioVentaM= precioVenta.toFixed(2);
 
 // alert("El precio Sugerido de venta del producto es: "+precioVentaM);
@@ -108,16 +108,16 @@ class Producto {
 
 }
 
-var arrayProductos = [];
+const arrayProductos = [];
 do{
-  var comprobacion = prompt('Ingrese un nombre del producto o fin para terminar de agregar');
+  const comprobacion = prompt('Ingrese un nombre del producto o fin para terminar de agregar');
   if (comprobacion === "fin"|| comprobacion === "FIN" || comprobacion === "Fin" ){
     break;
   }else{
     nombreP = comprobacion;
-    var precioP = prompt('Ingrese el precio del producto');
-    var detalleP = prompt('Ingrese el detalle del producto');
-    var cantidadP = prompt('Ingrese la cantidad comprada del producto');
+    const precioP = prompt('Ingrese el precio del producto');
+    const detalleP = prompt('Ingrese el detalle del producto');
+    const cantidadP = prompt('Ingrese la cantidad comprada del producto');
     arrayProductos.push(new Producto(nombreP, precioP, detalleP, cantidadP));
   }
 }
@@ -127,7 +127,7 @@ while (comprobacion != "fin"|| comprobacion === "FIN" || comprobacion === "Fin" 
 console.log(arrayProductos);
 
 
-for (var producto of arrayProductos) {
+for (const producto of arrayProductos) {
   document.write("<h3> El producto ingresado es: " + producto.nombre + "</h3>");
   document.write("<h3> El detalle del producto ingresado es: " + producto.detalle + "</h3>");
   document.write("<h3> La cantidad en stock del producto ingresado es: " + producto.cantidad + "</h3>");
