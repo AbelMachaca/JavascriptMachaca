@@ -108,9 +108,9 @@ class Producto {
 
 }
 
-const arrayProductos = [];
+let arrayProductos = [];
 do{
-  const comprobacion = prompt('Ingrese un nombre del producto o fin para terminar de agregar');
+  var comprobacion = prompt('Ingrese un nombre del producto o fin para terminar de agregar');
   if (comprobacion === "fin"|| comprobacion === "FIN" || comprobacion === "Fin" ){
     break;
   }else{
@@ -122,12 +122,12 @@ do{
   }
 }
 
-while (comprobacion != "fin"|| comprobacion === "FIN" || comprobacion === "Fin" )
+while (comprobacion != "fin"|| comprobacion != "FIN" || comprobacion != "Fin" )
 
 console.log(arrayProductos);
 
 
-for (const producto of arrayProductos) {
+for (let producto of arrayProductos) {
   document.write("<h3> El producto ingresado es: " + producto.nombre + "</h3>");
   document.write("<h3> El detalle del producto ingresado es: " + producto.detalle + "</h3>");
   document.write("<h3> La cantidad en stock del producto ingresado es: " + producto.cantidad + "</h3>");
@@ -139,4 +139,47 @@ for (const producto of arrayProductos) {
   console.log(producto.sumarIva());
 
 }
+
+const ingresado = prompt('Ingresar el producto que quiero buscar');
+const prodIngresado = arrayProductos.filter(producto => producto.nombre.includes(ingresado));
+console.log(prodIngresado);
+document.write("<h3> Lista de Productos ingresados para busqueda: </h3>");
+
+for (const producto of prodIngresado){
+  document.write("<ul><li><h3>Nombre: " + producto.nombre + "</h3></li>");
+  document.write("<li><h3>Detalle: " + producto.detalle + "</h3></li>");
+  document.write("<li><h3>Precio: " + producto.precio + "</h3></li></ul><br>");
+}
+
+const ordenadosCantidad = [];
+ordenadosCantidad = arrayProductos.map(elemento => elemento);
+ordenadosCantidad.sort(function(a, b) {
+  return a.cantidad- b.cantidad;
+  });
+console.log('Ordenados por Cantidad ascendente: ');
+console.log(ordenadosCantidad);
+document.write("<h3> Lista de Productos ordenados por cantidad: </h3>");
+
+for (const producto of ordenadosCantidad) {
+  document.write("<ul><li><h3>Nombre: " + producto.nombre + "</h3></li>");
+  document.write("<li><h3>Detalle: " + producto.detalle + "</h3></li>");
+  document.write("<li><h3>Cantidad: " + producto.cantidad + "</h3></li></ul><br>");
+}
+
+const ordenadosPrecio = [];
+ordenadosPrecio = arrayProductos.map(elemento => elemento);
+ordenadosPrecio.sort(function(a, b) {
+  return a.precio - b.precio;
+});
+console.log('Ordenados por Precios Ascendentes');
+console.log(ordenadosPrecio);
+document.write("<h3> Lista de Productos ordenados por Precio ascendente: </h3>");
+
+for (const producto of ordenadosPrecio) {
+  document.write("<ul><li><h3>Nombre: " + producto.nombre + "</h3></li>");
+  document.write("<li><h3>Detalle: " + producto.detalle + "</h3></li>");
+  document.write("<li><h3>Precio: " + producto.precio + "</h3></li></ul><br>");
+}
+
+
 
