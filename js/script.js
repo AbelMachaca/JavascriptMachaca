@@ -109,8 +109,9 @@ class Producto {
 }
 
 let arrayProductos = [];
+let comprobacion; 
 do{
-  var comprobacion = prompt('Ingrese un nombre del producto o fin para terminar de agregar');
+  comprobacion = prompt('Ingrese un nombre del producto o fin para terminar de agregar');
   if (comprobacion === "fin"|| comprobacion === "FIN" || comprobacion === "Fin" ){
     break;
   }else{
@@ -128,16 +129,13 @@ console.log(arrayProductos);
 
 
 for (let producto of arrayProductos) {
-  document.write("<h3> El producto ingresado es: " + producto.nombre + "</h3>");
-  document.write("<h3> El detalle del producto ingresado es: " + producto.detalle + "</h3>");
-  document.write("<h3> La cantidad en stock del producto ingresado es: " + producto.cantidad + "</h3>");
-  document.write("<h3> El precio del producto con IVA es: " + producto.sumarIva() + "</h3>");
-
-  console.log(producto.nombre);
-  console.log(producto.detalle);
-  console.log(producto.cantidad);
-  console.log(producto.sumarIva());
-
+  let contenedor = document.createElement("div");
+  contenedor.innerHTML = `<h3> Nombre: ${producto.nombre}</h3>
+                          <p>  Precio: ${producto.precio}</p>
+                          <p>  Cantidad: ${producto.cantidad}</p>
+                          <p>  Detalle: ${producto.detalle}</p>`;
+  document.body.appendChild(contenedor);
+ 
 }
 
 const ingresado = prompt('Ingresar el producto que quiero buscar');
@@ -145,14 +143,16 @@ const prodIngresado = arrayProductos.filter(producto => producto.nombre.includes
 console.log(prodIngresado);
 document.write("<h3> Lista de Productos ingresados para busqueda: </h3>");
 
-for (const producto of prodIngresado){
-  document.write("<ul><li><h3>Nombre: " + producto.nombre + "</h3></li>");
-  document.write("<li><h3>Detalle: " + producto.detalle + "</h3></li>");
-  document.write("<li><h3>Precio: " + producto.precio + "</h3></li></ul><br>");
+for (let producto of prodIngresado){
+  let contenedor = document.createElement("div");
+  contenedor.innerHTML = `<h3> Nombre: ${producto.nombre}</h3>
+                          <p>  Detalle: ${producto.detalle}</h3>
+                          <p>  Precio: ${producto.precio}</p>`;
+  document.body.appendChild(contenedor);
 }
 
 const ordenadosCantidad = [];
-ordenadosCantidad = arrayProductos.map(elemento => elemento);
+const Cantidad = arrayProductos.map(elemento => elemento);
 ordenadosCantidad.sort(function(a, b) {
   return a.cantidad- b.cantidad;
   });
@@ -160,14 +160,16 @@ console.log('Ordenados por Cantidad ascendente: ');
 console.log(ordenadosCantidad);
 document.write("<h3> Lista de Productos ordenados por cantidad: </h3>");
 
-for (const producto of ordenadosCantidad) {
-  document.write("<ul><li><h3>Nombre: " + producto.nombre + "</h3></li>");
-  document.write("<li><h3>Detalle: " + producto.detalle + "</h3></li>");
-  document.write("<li><h3>Cantidad: " + producto.cantidad + "</h3></li></ul><br>");
+for (let producto of ordenadosCantidad) {
+  let contenedor = document.createElement("div");
+  contenedor.innerHTML = `<h3> Nombre: ${producto.nombre}</h3>
+                          <p>  Detalle: ${producto.detalle}</h3>
+                          <p>  Cantidad: ${producto.cantidad}</p>`;
+  document.body.appendChild(contenedor);
 }
 
 const ordenadosPrecio = [];
-ordenadosPrecio = arrayProductos.map(elemento => elemento);
+const Precio = arrayProductos.map(elemento => elemento);
 ordenadosPrecio.sort(function(a, b) {
   return a.precio - b.precio;
 });
@@ -175,10 +177,12 @@ console.log('Ordenados por Precios Ascendentes');
 console.log(ordenadosPrecio);
 document.write("<h3> Lista de Productos ordenados por Precio ascendente: </h3>");
 
-for (const producto of ordenadosPrecio) {
-  document.write("<ul><li><h3>Nombre: " + producto.nombre + "</h3></li>");
-  document.write("<li><h3>Detalle: " + producto.detalle + "</h3></li>");
-  document.write("<li><h3>Precio: " + producto.precio + "</h3></li></ul><br>");
+for (let producto of ordenadosPrecio) {
+  let contenedor = document.createElement("div");
+  contenedor.innerHTML = `<h3> Nombre: ${producto.nombre}</h3>
+                          <p>  Detalle: ${producto.detalle}</h3>
+                          <p>  Precio: ${producto.precio}</p>`;
+  document.body.appendChild(contenedor);
 }
 
 
