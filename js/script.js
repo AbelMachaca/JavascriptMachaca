@@ -109,6 +109,7 @@ class Producto {
 }
 
 let arrayProductos = [];
+let miProducto = document.querySelector("#product")
 let comprobacion; 
 do{
   comprobacion = prompt('Ingrese un nombre del producto o fin para terminar de agregar');
@@ -128,7 +129,7 @@ while (comprobacion != "fin"|| comprobacion != "FIN" || comprobacion != "Fin" )
 console.log(arrayProductos);
 
 
-for (let producto of arrayProductos) {
+for (const producto of arrayProductos) {
   let contenedor = document.createElement("div");
   contenedor.innerHTML = `<h3> Nombre: ${producto.nombre}</h3>
                           <p>  Precio: ${producto.precio}</p>
@@ -138,12 +139,12 @@ for (let producto of arrayProductos) {
  
 }
 
-const ingresado = prompt('Ingresar el producto que quiero buscar');
+let ingresado = prompt('Ingresar el producto que quiero buscar');
 const prodIngresado = arrayProductos.filter(producto => producto.nombre.includes(ingresado));
 console.log(prodIngresado);
 document.write("<h3> Lista de Productos ingresados para busqueda: </h3>");
 
-for (let producto of prodIngresado){
+for (const producto of prodIngresado){
   let contenedor = document.createElement("div");
   contenedor.innerHTML = `<h3> Nombre: ${producto.nombre}</h3>
                           <p>  Detalle: ${producto.detalle}</h3>
@@ -151,7 +152,7 @@ for (let producto of prodIngresado){
   document.body.appendChild(contenedor);
 }
 
-const ordenadosCantidad = [];
+let ordenadosCantidad = [];
 const Cantidad = arrayProductos.map(elemento => elemento);
 ordenadosCantidad.sort(function(a, b) {
   return a.cantidad- b.cantidad;
@@ -160,7 +161,7 @@ console.log('Ordenados por Cantidad ascendente: ');
 console.log(ordenadosCantidad);
 document.write("<h3> Lista de Productos ordenados por cantidad: </h3>");
 
-for (let producto of ordenadosCantidad) {
+for (const producto of ordenadosCantidad) {
   let contenedor = document.createElement("div");
   contenedor.innerHTML = `<h3> Nombre: ${producto.nombre}</h3>
                           <p>  Detalle: ${producto.detalle}</h3>
@@ -168,7 +169,7 @@ for (let producto of ordenadosCantidad) {
   document.body.appendChild(contenedor);
 }
 
-const ordenadosPrecio = [];
+let ordenadosPrecio = [];
 const Precio = arrayProductos.map(elemento => elemento);
 ordenadosPrecio.sort(function(a, b) {
   return a.precio - b.precio;
@@ -186,4 +187,6 @@ for (let producto of ordenadosPrecio) {
 }
 
 
-
+miProducto.onclick = () => {
+    console.log(('Seleccionaste el producto'));
+}
