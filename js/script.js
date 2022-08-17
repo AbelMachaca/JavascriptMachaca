@@ -85,108 +85,215 @@
 
 
 
-class Producto {
-  constructor(nombre, precio, detalle, cantidad) {
-    this.nombre = nombre;
-    this.precio = parseFloat(precio);
-    this.detalle = detalle;
-    this.cantidad = cantidad;
-    this.disponible = true;
-  }
+// class Producto {
+//   constructor(nombre, precio, detalle, cantidad) {
+//     this.nombre = nombre;
+//     this.precio = parseFloat(precio);
+//     this.detalle = detalle;
+//     this.cantidad = cantidad;
+//     this.disponible = true;
+//   }
 
-  sumarIva() {
-    return this.precio * 1.21;
-  }
+//   sumarIva() {
+//     return this.precio * 1.21;
+//   }
 
-  vender() {
-    this.disponible = false;
-  }
+//   vender() {
+//     this.disponible = false;
+//   }
 
-  precioSugerido() {
-    return this.precio * 1.21 * 1.25;
-  }
+//   precioSugerido() {
+//     return this.precio * 1.21 * 1.25;
+//   }
 
-}
+// }
 
-let arrayProductos = [];
-let miProducto = document.querySelector("#product")
-let comprobacion; 
-do{
-  comprobacion = prompt('Ingrese un nombre del producto o fin para terminar de agregar');
-  if (comprobacion === "fin"|| comprobacion === "FIN" || comprobacion === "Fin" ){
-    break;
-  }else{
-    nombreP = comprobacion;
-    const precioP = prompt('Ingrese el precio del producto');
-    const detalleP = prompt('Ingrese el detalle del producto');
-    const cantidadP = prompt('Ingrese la cantidad comprada del producto');
-    arrayProductos.push(new Producto(nombreP, precioP, detalleP, cantidadP));
-  }
-}
+// let arrayProductos = [];
+// let miProducto = document.querySelector("#product")
+// let comprobacion; 
+// do{
+//   comprobacion = prompt('Ingrese un nombre del producto o fin para terminar de agregar');
+//   if (comprobacion === "fin"|| comprobacion === "FIN" || comprobacion === "Fin" ){
+//     break;
+//   }else{
+//     nombreP = comprobacion;
+//     const precioP = prompt('Ingrese el precio del producto');
+//     const detalleP = prompt('Ingrese el detalle del producto');
+//     const cantidadP = prompt('Ingrese la cantidad comprada del producto');
+//     arrayProductos.push(new Producto(nombreP, precioP, detalleP, cantidadP));
+//   }
+// }
 
-while (comprobacion != "fin"|| comprobacion != "FIN" || comprobacion != "Fin" )
+// while (comprobacion != "fin"|| comprobacion != "FIN" || comprobacion != "Fin" )
 
-console.log(arrayProductos);
+// console.log(arrayProductos);
 
 
-for (const producto of arrayProductos) {
-  let contenedor = document.createElement("div");
-  contenedor.innerHTML = `<h3> Nombre: ${producto.nombre}</h3>
-                          <p>  Precio: ${producto.precio}</p>
-                          <p>  Cantidad: ${producto.cantidad}</p>
-                          <p>  Detalle: ${producto.detalle}</p>`;
-  document.body.appendChild(contenedor);
+// for (const producto of arrayProductos) {
+//   let contenedor = document.createElement("div");
+//   contenedor.innerHTML = `<h3> Nombre: ${producto.nombre}</h3>
+//                           <p>  Precio: ${producto.precio}</p>
+//                           <p>  Cantidad: ${producto.cantidad}</p>
+//                           <p>  Detalle: ${producto.detalle}</p>`;
+//   document.body.appendChild(contenedor);
  
+// }
+
+// let ingresado = prompt('Ingresar el producto que quiero buscar');
+// const prodIngresado = arrayProductos.filter(producto => producto.nombre.includes(ingresado));
+// console.log(prodIngresado);
+// document.write("<h3> Lista de Productos ingresados para busqueda: </h3>");
+
+// for (const producto of prodIngresado){
+//   let contenedor = document.createElement("div");
+//   contenedor.innerHTML = `<h3> Nombre: ${producto.nombre}</h3>
+//                           <p>  Detalle: ${producto.detalle}</h3>
+//                           <p>  Precio: ${producto.precio}</p>`;
+//   document.body.appendChild(contenedor);
+// }
+
+// let ordenadosCantidad = [];
+// const Cantidad = arrayProductos.map(elemento => elemento);
+// ordenadosCantidad.sort(function(a, b) {
+//   return a.cantidad- b.cantidad;
+//   });
+// console.log('Ordenados por Cantidad ascendente: ');
+// console.log(ordenadosCantidad);
+// document.write("<h3> Lista de Productos ordenados por cantidad: </h3>");
+
+// for (const producto of ordenadosCantidad) {
+//   let contenedor = document.createElement("div");
+//   contenedor.innerHTML = `<h3> Nombre: ${producto.nombre}</h3>
+//                           <p>  Detalle: ${producto.detalle}</h3>
+//                           <p>  Cantidad: ${producto.cantidad}</p>`;
+//   document.body.appendChild(contenedor);
+// }
+
+// let ordenadosPrecio = [];
+// const Precio = arrayProductos.map(elemento => elemento);
+// ordenadosPrecio.sort(function(a, b) {
+//   return a.precio - b.precio;
+// });
+// console.log('Ordenados por Precios Ascendentes');
+// console.log(ordenadosPrecio);
+// document.write("<h3> Lista de Productos ordenados por Precio ascendente: </h3>");
+
+// for (let producto of ordenadosPrecio) {
+//   let contenedor = document.createElement("div");
+//   contenedor.innerHTML = `<h3> Nombre: ${producto.nombre}</h3>
+//                           <p>  Detalle: ${producto.detalle}</h3>
+//                           <p>  Precio: ${producto.precio}</p>`;
+//   document.body.appendChild(contenedor);
+// }
+
+
+// miProducto.onclick = () => {
+//     console.log(('Seleccionaste el producto'));
+// }
+
+const contenedorProductos = document.getElementById('contenedor-productos')
+const contenedorCarrito = document.getElementById('carrito-contenedor')
+const botonVaciar = document.getElementById('vaciar-carrito')
+const contadorCarrito = document.getElementById('contadorCarrito')
+const cantidad = document.getElementById('cantidad')
+const precioTotal = document.getElementById('precioTotal')
+const cantidadTotal = document.getElementById('cantidadTotal')
+
+let carrito = []
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('carrito')){
+        carrito = JSON.parse(localStorage.getItem('carrito'))
+        actualizarCarrito()
+    }
+})
+
+botonVaciar.addEventListener('click', () => {
+    carrito.length = 0
+    actualizarCarrito()
+})
+
+
+stockProductos.forEach((producto) => {
+    const div = document.createElement('div')
+    div.classList.add('producto')
+    div.innerHTML = `
+    <img src=${producto.img} alt= "">
+    <h3>${producto.nombre}</h3>
+    <p class="precioProducto">Precio:$ ${producto.precio}</p>
+    <button id="agregar${producto.id}" class="boton-agregar">Agregar</button>`
+    
+    contenedorProductos.appendChild(div)
+
+    
+    const boton = document.getElementById(`agregar${producto.id}`)
+    boton.addEventListener('click', () => {
+       agregarAlCarrito(producto.id)
+        
+    })
+})
+
+
+const agregarAlCarrito = (prodId) => {
+const existe = carrito.some (prod => prod.id === prodId) 
+    if (existe){ 
+        const prod = carrito.map (prod => { 
+            if (prod.id === prodId){
+                prod.cantidad++
+            }
+        })
+    } else { 
+        const item = stockProductos.find((prod) => prod.id === prodId)
+        carrito.push(item)
+    }
+    
+    actualizarCarrito() 
 }
 
-let ingresado = prompt('Ingresar el producto que quiero buscar');
-const prodIngresado = arrayProductos.filter(producto => producto.nombre.includes(ingresado));
-console.log(prodIngresado);
-document.write("<h3> Lista de Productos ingresados para busqueda: </h3>");
 
-for (const producto of prodIngresado){
-  let contenedor = document.createElement("div");
-  contenedor.innerHTML = `<h3> Nombre: ${producto.nombre}</h3>
-                          <p>  Detalle: ${producto.detalle}</h3>
-                          <p>  Precio: ${producto.precio}</p>`;
-  document.body.appendChild(contenedor);
-}
+const actualizarCarrito = () => {
+    
+    contenedorCarrito.innerHTML = "" 
+    carrito.forEach((prod) => {
+        const div = document.createElement('div')
+        div.className = ('productoEnCarrito')
+        div.innerHTML = `
+        <p>${prod.nombre}</p>
+        <p>Precio:$${prod.precio}</p>
+        <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
+        <button onclick="eliminarDelCarrito(${prod.id})" class="boton-eliminar"></button>`
 
-let ordenadosCantidad = [];
-const Cantidad = arrayProductos.map(elemento => elemento);
-ordenadosCantidad.sort(function(a, b) {
-  return a.cantidad- b.cantidad;
-  });
-console.log('Ordenados por Cantidad ascendente: ');
-console.log(ordenadosCantidad);
-document.write("<h3> Lista de Productos ordenados por cantidad: </h3>");
+        contenedorCarrito.appendChild(div)
+        
+        localStorage.setItem('carrito', JSON.stringify(carrito))
 
-for (const producto of ordenadosCantidad) {
-  let contenedor = document.createElement("div");
-  contenedor.innerHTML = `<h3> Nombre: ${producto.nombre}</h3>
-                          <p>  Detalle: ${producto.detalle}</h3>
-                          <p>  Cantidad: ${producto.cantidad}</p>`;
-  document.body.appendChild(contenedor);
-}
-
-let ordenadosPrecio = [];
-const Precio = arrayProductos.map(elemento => elemento);
-ordenadosPrecio.sort(function(a, b) {
-  return a.precio - b.precio;
-});
-console.log('Ordenados por Precios Ascendentes');
-console.log(ordenadosPrecio);
-document.write("<h3> Lista de Productos ordenados por Precio ascendente: </h3>");
-
-for (let producto of ordenadosPrecio) {
-  let contenedor = document.createElement("div");
-  contenedor.innerHTML = `<h3> Nombre: ${producto.nombre}</h3>
-                          <p>  Detalle: ${producto.detalle}</h3>
-                          <p>  Precio: ${producto.precio}</p>`;
-  document.body.appendChild(contenedor);
+    })
+    
+    contadorCarrito.innerText = carrito.length 
+    
+    console.log(carrito)
+    precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.cantidad * prod.precio, 0)
+   
 }
 
 
-miProducto.onclick = () => {
-    console.log(('Seleccionaste el producto'));
-}
+const contenedorModal = document.getElementsByClassName('modal-contenedor')[0]
+const botonAbrir = document.getElementById('boton-carrito')
+const botonCerrar = document.getElementById('carritoCerrar')
+const modalCarrito = document.getElementsByClassName('modal-carrito')[0]
+
+
+botonAbrir.addEventListener('click', ()=>{
+    contenedorModal.classList.toggle('modal-active')
+})
+botonCerrar.addEventListener('click', ()=>{
+    contenedorModal.classList.toggle('modal-active')
+})
+
+contenedorModal.addEventListener('click', (event) =>{
+    contenedorModal.classList.toggle('modal-active')
+
+})
+modalCarrito.addEventListener('click', (event) => {
+    event.stopPropagation() 
+})

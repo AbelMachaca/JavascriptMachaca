@@ -4,15 +4,37 @@
     <meta charset="UTF-8">
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Js</title>
+    <title>Carrito</title>
+    <link rel="stylesheet" href="css/styles.css">
+   
 </head>
 <body>
-    <h1>Sexto desafio</h1>
-    <h2>pre entrega</h2>
-    <h3 id="product">Productos:</h3>
-    
+    <header>
+        <h1 id="titulo" class="titulo">Segunda Entrega del Proyecto</h1>
+        <button id="boton-carrito"><span id="contadorCarrito">0</span></button>
+    </header>
+
+    <select>
+        <option value="all">Todos</option>
+    </select>
 
 
+    <main id="contenedor-productos">
+
+    </main>
+
+    <div class="modal-contenedor">
+        <div class="modal-carrito">
+            <h3>Carrito</h3>
+            <button id="carritoCerrar"></button>
+            <div id="carrito-contenedor">
+            
+            </div>
+            <p class="precioProducto">Precio total: $<span id="precioTotal">0</span></p>
+            <button id="vaciar-carrito" class="boton-agregar">Vaciar carrito</button>
+        </div>
+    </div>
+    <script src="./js/stock.js"></script>
     <script src="./js/script.js"></script>
 </body>
 </html>
