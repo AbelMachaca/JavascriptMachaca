@@ -1,4 +1,4 @@
-let stockProductos = [{
+[{
     id: 1, 
     nombre: "a01core", 
     tipo: "SAMSUNG",
