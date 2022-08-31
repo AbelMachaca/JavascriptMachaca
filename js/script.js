@@ -38,27 +38,27 @@ botonVaciar.onclick = () => {
 
 const stock = async () => {
     try {
-        const respuesta = await fetch('./js/data.json');
+        const respuesta = await fetch("./js/data.json");
         const dataJson = await respuesta.json();
-
+        const stockProductos = dataJson;
         stockProductos.forEach((producto) => {
-            const div = document.createElement('div')
-            div.classList.add('producto')
+            const div = document.createElement("div");
+            div.classList.add("producto");
             div.innerHTML = `
                 <img src=${producto.img} alt= "">
                 <h3>${producto.nombre}</h3>
                 <p class="precioProducto">Precio:$ ${producto.precio}</p>
-                <button id="agregar${producto.id}" class="boton-agregar">Agregar</button>`
+                <button id="agregar${producto.id}" class="boton-agregar">Agregar</button>`;
     
-        contenedorProductos.appendChild(div)
+        contenedorProductos.appendChild(div);
 
     
-    const boton = document.getElementById(`agregar${producto.id}`)
-    boton.addEventListener('click', () => {
-       agregarAlCarrito(producto.id)
+    const boton = document.getElementById(`agregar${producto.id}`);
+    boton.addEventListener("click", () => {
+       agregarAlCarrito(producto.id);
         
-    })
-})   
+    });
+});  
       
 
 } catch (e) {
@@ -67,61 +67,7 @@ const stock = async () => {
 }
 
 
-
-//intento 2
-
-// async function bringData(){
-    
-//         const respuesta = await fetch('./js/data.json');
-//         const dataJson = await respuesta.json();
-
-//  data.forEach((producto) => {
-//     const div = document.createElement('div')
-//     div.classList.add('producto')
-//     div.innerHTML = `
-//      <img src=${producto.img} alt= "">
-//      <h3>${producto.nombre}</h3>
-//      <p class="precioProducto">Precio:$ ${producto.precio}</p>
-//      <button id="agregar${producto.id}" class="boton-agregar">Agregar</button>`
-    
-//     contenedorProductos.appendChild(div)
-
-    
-//     const boton = document.getElementById(`agregar${producto.id}`)
-//     boton.addEventListener('click', () => {
-//        agregarAlCarrito(producto.id)
-        
-//     })
-// })   
-      
-// searchBtn.addEventListener('click', ()=>{
-//     bringData();
-//     })   
-
-
-// } 
-     
-
-
-
-// stockProductos.forEach((producto) => {
-//     const div = document.createElement('div')
-//     div.classList.add('producto')
-//     div.innerHTML = `
-//     <img src=${producto.img} alt= "">
-//     <h3>${producto.nombre}</h3>
-//     <p class="precioProducto">Precio:$ ${producto.precio}</p>
-//     <button id="agregar${producto.id}" class="boton-agregar">Agregar</button>`
-    
-//     contenedorProductos.appendChild(div)
-
-    
-//     const boton = document.getElementById(`agregar${producto.id}`)
-//     boton.addEventListener('click', () => {
-//        agregarAlCarrito(producto.id)
-        
-//     })
-// })
+stock();
 
 
 const agregarAlCarrito = (prodId) => {
