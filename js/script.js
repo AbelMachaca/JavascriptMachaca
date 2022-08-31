@@ -56,8 +56,24 @@ const stock = async () => {
     const boton = document.getElementById(`agregar${producto.id}`);
     boton.addEventListener("click", () => {
        agregarAlCarrito(producto.id);
+
         
     });
+    const agregarAlCarrito = (prodId) => {
+    const existe = carrito.some (prod => prod.id === prodId) 
+        if (existe){ 
+            const prod = carrito.map (prod => { 
+                if (prod.id === prodId){
+                prod.cantidad++
+                }
+            })
+        } else { 
+        const item = stockProductos.find((prod) => prod.id === prodId)
+        carrito.push(item)
+        }
+    
+        actualizarCarrito() 
+    }
 });  
       
 
@@ -70,21 +86,6 @@ const stock = async () => {
 stock();
 
 
-const agregarAlCarrito = (prodId) => {
-const existe = carrito.some (prod => prod.id === prodId) 
-    if (existe){ 
-        const prod = carrito.map (prod => { 
-            if (prod.id === prodId){
-                prod.cantidad++
-            }
-        })
-    } else { 
-        const item = stockProductos.find((prod) => prod.id === prodId)
-        carrito.push(item)
-    }
-    
-    actualizarCarrito() 
-}
 
 
 const actualizarCarrito = () => {
